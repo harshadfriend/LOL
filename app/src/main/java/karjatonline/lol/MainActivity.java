@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         cbOtherHabits=findViewById(R.id.cbOtherHabits);
 
         //gender selection
-        rbMale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      /*  rbMale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 gender="Male";
@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 mstatus="Widowed";
             }
         });
+        */
 
         //kco
      /*   cbHyperTension.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -214,6 +215,27 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //gender check
+                if(rbMale.isChecked())
+                    gender="Male";
+                else if(rbFemale.isChecked())
+                    gender="Female";
+                else if(rbTrans.isChecked())
+                    gender="trans";
+
+                //marital status check
+                if(rbSingle.isChecked())
+                    mstatus="Single";
+                else if(rbMarried.isChecked())
+                    mstatus="Married";
+                else if(rbSeparated.isChecked())
+                    mstatus="Separated";
+                else if(rbWidowed.isChecked())
+                    mstatus="Widowed";
+                else if(rbDivorced.isChecked())
+                    mstatus="Divorced";
+
+                //KCO check
                 if(cbHyperTension.isChecked())
                     kco=kco+" "+cbHyperTension.getText().toString();
                 if(cbDiabetes.isChecked())
@@ -229,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 if(cbOtherKCO.isChecked())
                     kco=kco+" "+etOtherKCO.getText().toString();
 
+                //Habits check
                 if(cbTobaccoChewing.isChecked())
                     habits=habits+" "+cbTobaccoChewing.getText().toString();
                 if(cbGutkha.isChecked())
