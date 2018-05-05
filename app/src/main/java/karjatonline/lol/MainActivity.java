@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox cbHyperTension,cbDiabetes,cbBP,cbAsthma,cbAnemia,cbPiles,cbOtherKCO,cbTobaccoChewing,cbGutkha,cbSmoking,
             cbMasheri,cbAlcohol,cbOtherHabits;
     AutoCompleteTextView actvChiefComplaints,actvPastHistory,actvProbableDiagnosis,actvRx,actvAdvSuggRef;
-    Button btnSubmit,btnShow;
+    Button btnSubmit;
 //firebase part
     String dburl="https://lol-tiware.firebaseio.com/";
     Firebase firebase;
@@ -210,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         btnSubmit=findViewById(R.id.btnSubmit);
-        btnShow=findViewById(R.id.btnShow);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,13 +256,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
+        
         bnv=findViewById(R.id.bnv);
         bnv.setItemIconTintList(null);
 

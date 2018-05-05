@@ -13,7 +13,7 @@ import com.firebase.client.Firebase;
 
 public class Home extends AppCompatActivity {
 
-    Button btnAddRecord,btnDeleteRecord,btnSync;
+    Button btnAddRecord,btnDeleteRecord,btnSync,btnView;
 
     //firebase part
     String dburl="https://lol-tiware.firebaseio.com/";
@@ -31,6 +31,7 @@ public class Home extends AppCompatActivity {
         btnAddRecord=findViewById(R.id.btnAddRecord);
         btnDeleteRecord=findViewById(R.id.btnDeleteRecord);
         btnSync=findViewById(R.id.btnSync);
+        btnView=findViewById(R.id.btnView);
 
         btnAddRecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,9 +80,9 @@ public class Home extends AppCompatActivity {
                     fb.setDoctor(str[i][18]);
 
                     firebase.child("lol").push().setValue(fb);
-                    Snackbar.make(getCurrentFocus(),"Sync Successfull !",Snackbar.LENGTH_LONG).show();
-                }
 
+                }
+                Snackbar.make(findViewById(android.R.id.content),"Sync Successfull !",Snackbar.LENGTH_LONG).show();
             }
         });
     }
