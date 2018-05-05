@@ -40,6 +40,12 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        btnView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this,ViewRecords.class));
+            }
+        });
         btnSync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
