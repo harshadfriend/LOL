@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnSubmit,btnShow;
     String dburl="https://lol-tiware.firebaseio.com/";
     Firebase firebase;
-
+    String gender,mstatus,kco,habits;
 
 
     @Override
@@ -48,16 +48,19 @@ public class MainActivity extends AppCompatActivity {
         etOtherKCO=findViewById(R.id.etOtherKCO);
         etOtherHabits=findViewById(R.id.etOtherHabits);
         etDoctor=findViewById(R.id.etDoctor);
-
+//gender
         rbMale=findViewById(R.id.rbMale);
+        rbMale.setSelected(true);
         rbFemale=findViewById(R.id.rbFemale);
         rbTrans=findViewById(R.id.rbTrans);
+//marital status
         rbSingle=findViewById(R.id.rbSingle);
+        rbSingle.setSelected(true);
         rbMarried=findViewById(R.id.rbMarried);
         rbSeparated=findViewById(R.id.rbSeparated);
         rbDivorced=findViewById(R.id.rbDivorced);
         rbWidowed=findViewById(R.id.rbWidowed);
-
+//kco
         cbHyperTension=findViewById(R.id.cbHyperTension);
         cbDiabetes=findViewById(R.id.cbDiabetes);
         cbBP=findViewById(R.id.cbBP);
@@ -72,11 +75,103 @@ public class MainActivity extends AppCompatActivity {
         cbAlcohol=findViewById(R.id.cbAlcohol);
         cbOtherHabits=findViewById(R.id.cbOtherHabits);
 
+        //gender selection
+        rbMale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                gender="Male";
+            }
+        });
+        rbFemale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                gender="Female";
+            }
+        });
+        rbTrans.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                gender="Trans";
+            }
+        });
+
+        //marital status selection
+        rbSingle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mstatus="Single";
+            }
+        });
+        rbMarried.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mstatus="Married";
+            }
+        });
+        rbSeparated.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mstatus="Separated";
+            }
+        });
+        rbDivorced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mstatus="Divorced";
+            }
+        });
+        rbWidowed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mstatus="Widowed";
+            }
+        });
+
+        //kco
+     /*   cbHyperTension.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                kco=kco+" "+ cbHyperTension.getText().toString();
+            }
+        });
+        cbDiabetes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                kco=kco+" "+ cbDiabetes.getText().toString();
+            }
+        });
+        cbBP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                kco=kco+" "+ cbBP.getText().toString();
+            }
+        });
+        cbAsthma.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                kco=kco+" "+ cbAsthma.getText().toString();
+            }
+        });
+        cbAnemia.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                kco=kco+" "+ cbAnemia.getText().toString();
+            }
+        });
+
+        cbPiles.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                kco=kco+" "+ cbPiles.getText().toString();
+            }
+        });
+       */
         cbOtherKCO.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
+                if (isChecked){
                     etOtherKCO.setEnabled(true);
+                }
                 else {
                     etOtherKCO.setEnabled(false);
                     etOtherKCO.setText("");
@@ -87,8 +182,10 @@ public class MainActivity extends AppCompatActivity {
         cbOtherHabits.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
+                if(isChecked){
                     etOtherHabits.setEnabled(true);
+                }
+
                 else {
                     etOtherHabits.setEnabled(false);
                     etOtherHabits.setText("");
@@ -108,8 +205,41 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(cbHyperTension.isChecked())
+                    kco=kco+" "+cbHyperTension.getText().toString();
+                if(cbDiabetes.isChecked())
+                    kco=kco+" "+cbDiabetes.getText().toString();
+                if(cbBP.isChecked())
+                    kco=kco+" "+cbBP.getText().toString();
+                if(cbAsthma.isChecked())
+                    kco=kco+" "+cbAsthma.getText().toString();
+                if(cbAnemia.isChecked())
+                    kco=kco+" "+cbAnemia.getText().toString();
+                if(cbPiles.isChecked())
+                    kco=kco+" "+cbPiles.getText().toString();
+                if(cbOtherKCO.isChecked())
+                    kco=kco+" "+etOtherKCO.getText().toString();
+
+                if(cbTobaccoChewing.isChecked())
+                    kco=kco+" "+cbTobaccoChewing.getText().toString();
+                if(cbGutkha.isChecked())
+                    kco=kco+" "+cbGutkha.getText().toString();
+                if(cbSmoking.isChecked())
+                    kco=kco+" "+cbSmoking.getText().toString();
+                if(cbMasheri.isChecked())
+                    kco=kco+" "+cbMasheri.getText().toString();
+                if(cbAlcohol.isChecked())
+                    kco=kco+" "+cbAlcohol.getText().toString();
+                if(cbOtherHabits.isChecked())
+                    kco=kco+" "+cbOtherHabits.getText().toString();
+
                 dbhelper db=new dbhelper(MainActivity.this);
-                String result=db.enterdata(etName.getText().toString(),etAge.getText().toString(),etDOB.getText().toString());
+                String result=db.enterdata(etVillageName.getText().toString(),etName.getText().toString(),etAge.getText().toString(),
+                        etDOB.getText().toString(),etHeight.getText().toString(),etWeight.getText().toString(),gender,mstatus,
+                        etFamilyMembers.getText().toString(),etTotalFamilyIncome.getText().toString(),etOccupation.getText().toString(),
+                        actvChiefComplaints.getText().toString(),kco,actvPastHistory.getText().toString(),habits,
+                        actvProbableDiagnosis.getText().toString(),actvRx.getText().toString(),actvAdvSuggRef.getText().toString(),
+                        etDoctor.getText().toString());
 
                 if(result.equalsIgnoreCase("SUCCESS"))
                     Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
@@ -122,11 +252,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 firebase.child("lol").removeValue();
                 dbhelper db=new dbhelper(MainActivity.this);
+
+                //test for deleting particular record
                 SQLiteDatabase dbase=db.getWritableDatabase();
                 dbase.delete("user","name=?",new String[]{String.valueOf("Makarand ")});
+
+                //test for updating particular record
                 ContentValues values=new ContentValues();
                 values.put("name","harshad dagade");
                 dbase.update("user",values,"name=?",new String[]{String.valueOf("harshad ")});
+
                 String[][] str=db.showitems();
                 //Toast.makeText(MainActivity.this, ""+str, Toast.LENGTH_SHORT).show();
                 fbase fb=new fbase();

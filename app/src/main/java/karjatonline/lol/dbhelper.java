@@ -54,13 +54,32 @@ public class dbhelper extends SQLiteOpenHelper {
     }
 
 
-    String enterdata(String name,String age,String add){
+    String enterdata(String vname,String name,String age,String dob,String height,String weight,String gender,String mstatus,
+                     String fmembers,String fincome,String occupation,String chiefcomplaints,String kco,String pasthistory,
+                     String habits,String probablediagnosis,String rx,String advice,String doctor){
         try{
             SQLiteDatabase dbase=getWritableDatabase();
             ContentValues values=new ContentValues();
+
+            values.put("vname",vname);              //1
             values.put("name",name);
             values.put("age",age);
-            values.put("address",add);
+            values.put("dob",dob);
+            values.put("height",height);            //5
+            values.put("weight",weight);
+            values.put("gender",gender);
+            values.put("mstatus",mstatus);
+            values.put("fmembers",fmembers);
+            values.put("fincome",fincome);          //10
+            values.put("occupation",occupation);
+            values.put("chiefcomplaints",chiefcomplaints);
+            values.put("kco",kco);
+            values.put("pasthistory",pasthistory);
+            values.put("habits",habits);            //15
+            values.put("probablediagnosis",probablediagnosis);
+            values.put("rx",rx);
+            values.put("advice",advice);
+            values.put("doctor",doctor);            //19
 
             dbase.insert("user",null,values);
 
