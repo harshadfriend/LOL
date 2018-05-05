@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        actvChiefComplaints=findViewById(R.id.actvChiefComplaints);
+        actvPastHistory=findViewById(R.id.actvPastHistory);
+        actvRx=findViewById(R.id.actvRx);
+        actvAdvSuggRef=findViewById(R.id.actvAdvSuggRef);
+        actvProbableDiagnosis=findViewById(R.id.actvProbableDiagnosis);
+
         etName=findViewById(R.id.etName);
         etDOB=findViewById(R.id.etDOB);
         etAge=findViewById(R.id.etAge);
@@ -50,12 +56,12 @@ public class MainActivity extends AppCompatActivity {
         etDoctor=findViewById(R.id.etDoctor);
 //gender
         rbMale=findViewById(R.id.rbMale);
-        rbMale.setSelected(true);
+        rbMale.setChecked(true);
         rbFemale=findViewById(R.id.rbFemale);
         rbTrans=findViewById(R.id.rbTrans);
 //marital status
         rbSingle=findViewById(R.id.rbSingle);
-        rbSingle.setSelected(true);
+        rbSingle.setChecked(true);
         rbMarried=findViewById(R.id.rbMarried);
         rbSeparated=findViewById(R.id.rbSeparated);
         rbDivorced=findViewById(R.id.rbDivorced);
