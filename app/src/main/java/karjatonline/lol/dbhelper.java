@@ -21,7 +21,9 @@ public class dbhelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String table_create_query="create table User(vname text,name text,age text,dob text,height text,weight text,gender text,mstatus text,fmembers text,fincome text,occupation text,chiefcomplaints text,kco text,pasthistory text,habits text,probablediagnosis text,rx text,advice text,doctor text)";
+        String table_create_query="create table User(villagename text,name text,age text,dob text,height text,weight text,gender text," +
+                "maritalstatus text,familymembers text,familyincome text,occupation text,chiefcomplaints text,kco text,pasthistory text," +
+                "habits text,probablediagnosis text,rx text,advice text,doctor text)";
         db.execSQL(table_create_query);
 
     }
@@ -38,7 +40,7 @@ public class dbhelper extends SQLiteOpenHelper {
         SQLiteDatabase dbase=getReadableDatabase();
         String query="select * from user";
         Cursor cursor=dbase.rawQuery(query,null);
-        String[][] str=new String[cursor.getCount()][3];
+        String[][] str=new String[cursor.getCount()][19];
         if(cursor.getCount()>0){
             for(int i=0;i<cursor.getCount();i++){
                 cursor.moveToNext();
@@ -46,30 +48,47 @@ public class dbhelper extends SQLiteOpenHelper {
                 str[i][0]=cursor.getString(0);
                 str[i][1]=cursor.getString(1);
                 str[i][2]=cursor.getString(2);
-                Log.d("dbhelper",str[i][0]+" "+str[i][1]+" "+str[i][2]+" \n");
+                str[i][3]=cursor.getString(3);
+                str[i][4]=cursor.getString(4);
+                str[i][5]=cursor.getString(5);
+                str[i][6]=cursor.getString(6);
+                str[i][7]=cursor.getString(7);
+                str[i][8]=cursor.getString(8);
+                str[i][9]=cursor.getString(9);
+                str[i][10]=cursor.getString(10);
+                str[i][11]=cursor.getString(11);
+                str[i][12]=cursor.getString(12);
+                str[i][13]=cursor.getString(13);
+                str[i][14]=cursor.getString(14);
+                str[i][15]=cursor.getString(15);
+                str[i][16]=cursor.getString(16);
+                str[i][17]=cursor.getString(17);
+                str[i][18]=cursor.getString(18);
+
+                //Log.d("dbhelper",str[i][0]+" "+str[i][1]+" "+str[i][2]+" \n");
             }
         }
         return str;
     }
 
 
-    String enterdata(String vname,String name,String age,String dob,String height,String weight,String gender,String mstatus,
-                     String fmembers,String fincome,String occupation,String chiefcomplaints,String kco,String pasthistory,
+    String enterdata(String villagename,String name,String age,String dob,String height,String weight,String gender,String maritalstatus,
+                     String familymembers,String familyincome,String occupation,String chiefcomplaints,String kco,String pasthistory,
                      String habits,String probablediagnosis,String rx,String advice,String doctor){
         try{
             SQLiteDatabase dbase=getWritableDatabase();
             ContentValues values=new ContentValues();
 
-            values.put("vname",vname);              //1
+            values.put("villagename",villagename);              //1
             values.put("name",name);
             values.put("age",age);
             values.put("dob",dob);
             values.put("height",height);            //5
             values.put("weight",weight);
             values.put("gender",gender);
-            values.put("mstatus",mstatus);
-            values.put("fmembers",fmembers);
-            values.put("fincome",fincome);          //10
+            values.put("maritalstatus",maritalstatus);
+            values.put("familymembers",familymembers);
+            values.put("familyincome",familyincome);          //10
             values.put("occupation",occupation);
             values.put("chiefcomplaints",chiefcomplaints);
             values.put("kco",kco);

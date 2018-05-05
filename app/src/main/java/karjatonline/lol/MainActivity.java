@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
             cbMasheri,cbAlcohol,cbOtherHabits;
     AutoCompleteTextView actvChiefComplaints,actvPastHistory,actvProbableDiagnosis,actvRx,actvAdvSuggRef;
     Button btnSubmit,btnShow;
+//firebase part
     String dburl="https://lol-tiware.firebaseio.com/";
     Firebase firebase;
+
     String gender,mstatus,kco,habits;
 
 
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        gender="";      mstatus="";     kco="";     habits="";
 
         actvChiefComplaints=findViewById(R.id.actvChiefComplaints);
         actvPastHistory=findViewById(R.id.actvPastHistory);
@@ -227,17 +231,17 @@ public class MainActivity extends AppCompatActivity {
                     kco=kco+" "+etOtherKCO.getText().toString();
 
                 if(cbTobaccoChewing.isChecked())
-                    kco=kco+" "+cbTobaccoChewing.getText().toString();
+                    habits=habits+" "+cbTobaccoChewing.getText().toString();
                 if(cbGutkha.isChecked())
-                    kco=kco+" "+cbGutkha.getText().toString();
+                    habits=habits+" "+cbGutkha.getText().toString();
                 if(cbSmoking.isChecked())
-                    kco=kco+" "+cbSmoking.getText().toString();
+                    habits=habits+" "+cbSmoking.getText().toString();
                 if(cbMasheri.isChecked())
-                    kco=kco+" "+cbMasheri.getText().toString();
+                    habits=habits+" "+cbMasheri.getText().toString();
                 if(cbAlcohol.isChecked())
-                    kco=kco+" "+cbAlcohol.getText().toString();
+                    habits=habits+" "+cbAlcohol.getText().toString();
                 if(cbOtherHabits.isChecked())
-                    kco=kco+" "+cbOtherHabits.getText().toString();
+                    habits=habits+" "+etOtherHabits.getText().toString();
 
                 dbhelper db=new dbhelper(MainActivity.this);
                 String result=db.enterdata(etVillageName.getText().toString(),etName.getText().toString(),etAge.getText().toString(),
@@ -249,34 +253,14 @@ public class MainActivity extends AppCompatActivity {
 
                 if(result.equalsIgnoreCase("SUCCESS"))
                     Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
-//                finish();
+                finish();
             }
         });
 
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebase.child("lol").removeValue();
-                dbhelper db=new dbhelper(MainActivity.this);
 
-                //test for deleting particular record
-                SQLiteDatabase dbase=db.getWritableDatabase();
-                dbase.delete("user","name=?",new String[]{String.valueOf("Makarand ")});
-
-                //test for updating particular record
-                ContentValues values=new ContentValues();
-                values.put("name","harshad dagade");
-                dbase.update("user",values,"name=?",new String[]{String.valueOf("harshad ")});
-
-                String[][] str=db.showitems();
-                //Toast.makeText(MainActivity.this, ""+str, Toast.LENGTH_SHORT).show();
-                fbase fb=new fbase();
-                for(int i=0;i<str.length;i++) {
-                    fb.setName(str[i][0]);
-                    fb.setAge(str[i][1]);
-                    fb.setAdd(str[i][2]);
-                    firebase.child("lol").push().setValue(fb);
-                }
             }
         });
 
