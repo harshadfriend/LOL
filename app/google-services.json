@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "949889883343",
+    "firebase_url": "https://lol-tiware.firebaseio.com",
+    "project_id": "lol-tiware",
+    "storage_bucket": "lol-tiware.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949889883343:android:ba9ed5697e9b3dcd",
+        "android_client_info": {
+          "package_name": "karjatonline.lol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949889883343-ieov25d2isn95ipijolhfbb4qoemve5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLP0KQo2M7OiKgJPBX8vojss9o5xerQuk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
