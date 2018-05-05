@@ -21,7 +21,9 @@ public class dbhelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String table_create_query="create table User(name text,age text,address text)";
+        String table_create_query="create table User(vname text,name text,age text,dob text,height text,weight text," +
+                "gender text,mstatus text,fmembers text,fincome text,occupation text,chiefcomplaints text,kco text," +
+                "pasthistory text,habits text,probablediagnosis text,rx text,advice text,doctor text)";
         db.execSQL(table_create_query);
 
     }
@@ -50,6 +52,7 @@ public class dbhelper extends SQLiteOpenHelper {
         }
         return str;
     }
+
 
     String enterdata(String name,String age,String add){
         try{
