@@ -237,39 +237,39 @@ public class MainActivity extends AppCompatActivity {
 
                 //KCO check
                 if(cbHyperTension.isChecked())
-                    kco=kco+" "+cbHyperTension.getText().toString();
+                    kco=kco+cbHyperTension.getText().toString()+" ";
                 if(cbDiabetes.isChecked())
-                    kco=kco+" "+cbDiabetes.getText().toString();
+                    kco=kco+cbDiabetes.getText().toString()+" ";
                 if(cbBP.isChecked())
-                    kco=kco+" "+cbBP.getText().toString();
+                    kco=kco+cbBP.getText().toString()+" ";
                 if(cbAsthma.isChecked())
-                    kco=kco+" "+cbAsthma.getText().toString();
+                    kco=kco+cbAsthma.getText().toString()+" ";
                 if(cbAnemia.isChecked())
-                    kco=kco+" "+cbAnemia.getText().toString();
+                    kco=kco+cbAnemia.getText().toString()+" ";
                 if(cbPiles.isChecked())
-                    kco=kco+" "+cbPiles.getText().toString();
+                    kco=kco+cbPiles.getText().toString()+" ";
                 if(cbOtherKCO.isChecked())
-                    kco=kco+" "+etOtherKCO.getText().toString();
+                    kco=kco+etOtherKCO.getText().toString()+" ";
 
                 //Habits check
                 if(cbTobaccoChewing.isChecked())
-                    habits=habits+" "+cbTobaccoChewing.getText().toString();
+                    habits=habits+cbTobaccoChewing.getText().toString()+" ";
                 if(cbGutkha.isChecked())
-                    habits=habits+" "+cbGutkha.getText().toString();
+                    habits=habits+cbGutkha.getText().toString()+" ";
                 if(cbSmoking.isChecked())
-                    habits=habits+" "+cbSmoking.getText().toString();
+                    habits=habits+cbSmoking.getText().toString()+" ";
                 if(cbMasheri.isChecked())
-                    habits=habits+" "+cbMasheri.getText().toString();
+                    habits=habits+cbMasheri.getText().toString()+" ";
                 if(cbAlcohol.isChecked())
-                    habits=habits+" "+cbAlcohol.getText().toString();
+                    habits=habits+cbAlcohol.getText().toString()+" ";
                 if(cbOtherHabits.isChecked())
-                    habits=habits+" "+etOtherHabits.getText().toString();
+                    habits=habits+etOtherHabits.getText().toString()+" ";
 
                 dbhelper db=new dbhelper(MainActivity.this);
                 String result=db.enterdata(etVillageName.getText().toString(),etName.getText().toString(),etAge.getText().toString(),
                         etDOB.getText().toString(),etHeight.getText().toString(),etWeight.getText().toString(),gender,mstatus,
                         etFamilyMembers.getText().toString(),etTotalFamilyIncome.getText().toString(),etOccupation.getText().toString(),
-                        actvChiefComplaints.getText().toString(),kco,actvPastHistory.getText().toString(),habits,
+                        actvChiefComplaints.getText().toString(),kco.trim(),actvPastHistory.getText().toString(),habits.trim(),
                         actvProbableDiagnosis.getText().toString(),actvRx.getText().toString(),actvAdvSuggRef.getText().toString(),
                         etDoctor.getText().toString());
 
