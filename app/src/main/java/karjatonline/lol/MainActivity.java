@@ -266,15 +266,18 @@ public class MainActivity extends AppCompatActivity {
                     habits=habits+etOtherHabits.getText().toString()+" ";
 
                 dbhelper db=new dbhelper(MainActivity.this);
-                String result=db.enterdata(etVillageName.getText().toString(),etName.getText().toString(),etAge.getText().toString(),
-                        etDOB.getText().toString(),etHeight.getText().toString(),etWeight.getText().toString(),gender,mstatus,
-                        etFamilyMembers.getText().toString(),etTotalFamilyIncome.getText().toString(),etOccupation.getText().toString(),
-                        actvChiefComplaints.getText().toString(),kco.trim(),actvPastHistory.getText().toString(),habits.trim(),
-                        actvProbableDiagnosis.getText().toString(),actvRx.getText().toString(),actvAdvSuggRef.getText().toString(),
-                        etDoctor.getText().toString());
+                if(!etName.getText().toString().isEmpty()) {
+                    String result = db.enterdata(etVillageName.getText().toString(), etName.getText().toString(), etAge.getText().toString(),
+                            etDOB.getText().toString(), etHeight.getText().toString(), etWeight.getText().toString(), gender, mstatus,
+                            etFamilyMembers.getText().toString(), etTotalFamilyIncome.getText().toString(), etOccupation.getText().toString(),
+                            actvChiefComplaints.getText().toString(), kco.trim(), actvPastHistory.getText().toString(), habits.trim(),
+                            actvProbableDiagnosis.getText().toString(), actvRx.getText().toString(), actvAdvSuggRef.getText().toString(),
+                            etDoctor.getText().toString());
 
-                if(result.equalsIgnoreCase("SUCCESS"))
-                    Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+
+                    if (result.equalsIgnoreCase("SUCCESS"))
+                        Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                }
                 finish();
             }
         });
