@@ -53,13 +53,14 @@ public class Home extends AppCompatActivity {
                 dbhelper db=new dbhelper(Home.this);
 
                 //test for deleting particular record
-                SQLiteDatabase dbase=db.getWritableDatabase();
+              /*  SQLiteDatabase dbase=db.getWritableDatabase();
                 dbase.delete("user","name=?",new String[]{String.valueOf("Makarand ")});
 
                 //test for updating particular record
                 ContentValues values=new ContentValues();
                 values.put("name","harshad dagade");
                 dbase.update("user",values,"name=?",new String[]{String.valueOf("harshad ")});
+                */
 
                 String[][] str=db.showitems();
                 //Toast.makeText(MainActivity.this, ""+str, Toast.LENGTH_SHORT).show();

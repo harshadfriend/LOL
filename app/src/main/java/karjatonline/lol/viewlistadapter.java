@@ -102,9 +102,9 @@ public class viewlistadapter extends ArrayAdapter{
         holder.tvFIncome.setText(data[position][9]);
         holder.tvOccupation.setText(data[position][10]);
         holder.tvCComplaints.setText(data[position][11]);
-        holder.tvKCO.setText(data[position][12]);
+        holder.tvKCO.setText(data[position][12].trim());
         holder.tvPHistory.setText(data[position][13]);
-        holder.tvHabits.setText(data[position][14]);
+        holder.tvHabits.setText(data[position][14].trim());
         holder.tvDiagnosis.setText(data[position][15]);
         holder.tvRx.setText(data[position][16]);
         holder.tvAdvSuggRef.setText(data[position][17]);
