@@ -1,10 +1,18 @@
 package karjatonline.lol;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class ViewRecords extends AppCompatActivity {
@@ -12,6 +20,8 @@ public class ViewRecords extends AppCompatActivity {
     viewlistadapter vadp;
     ListView lv;
     ArrayAdapter<String> adp;
+    EditText etViewSearch;
+
 
 
     @Override
@@ -19,12 +29,21 @@ public class ViewRecords extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_records);
 
+        etViewSearch=findViewById(R.id.etViewSearch);
         dbhelper db=new dbhelper(this);
+
         SQLiteDatabase dbase=db.getReadableDatabase();
         String q="select * from user";
-        Cursor cursor=dbase.rawQuery(q,null);
+        String qq="select name from user";
+        Cursor cursor=dbase.rawQuery(qq,null);
         String[][] str=new String[cursor.getCount()][19];
-        for(int i=0;i<cursor.getCount();i++){
+        String [] str1=new String[cursor.getCount()];
+        for(int j=0;j<cursor.getCount();j++){
+            cursor.moveToNext();
+            str1[j]=cursor.getString(0);
+        }
+
+      /*  for(int i=0;i<cursor.getCount();i++){
             cursor.moveToNext();
             str[i][0]=cursor.getString(0);
             str[i][1]=cursor.getString(1);
@@ -45,14 +64,31 @@ public class ViewRecords extends AppCompatActivity {
             str[i][16]=cursor.getString(16);
             str[i][17]=cursor.getString(17);
             str[i][18]=cursor.getString(18);
-        }
+        }*/
 
         lv=findViewById(R.id.lv);
-        //adp=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,str);
-        //adp.setNotifyOnChange(true);
+        adp=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,str1);
+        adp.setNotifyOnChange(true);
         vadp=new viewlistadapter(this,R.layout.viewlist,str);
         vadp.setNotifyOnChange(true);
-        lv.setAdapter(vadp);
+        lv.setAdapter(adp);
+
+        etViewSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("textchanged",""+s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
 
