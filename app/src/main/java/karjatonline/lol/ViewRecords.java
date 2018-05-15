@@ -21,6 +21,7 @@ public class ViewRecords extends AppCompatActivity {
     ListView lv;
     ArrayAdapter<String> adp;
     EditText etViewSearch;
+    SQLiteDatabase dbase;
 
 
 
@@ -32,16 +33,9 @@ public class ViewRecords extends AppCompatActivity {
         etViewSearch=findViewById(R.id.etViewSearch);
         dbhelper db=new dbhelper(this);
 
-        SQLiteDatabase dbase=db.getReadableDatabase();
+        dbase=db.getReadableDatabase();
         String q="select * from user";
-        String qq="select name from user";
-        Cursor cursor=dbase.rawQuery(qq,null);
-        String[][] str=new String[cursor.getCount()][19];
-        String [] str1=new String[cursor.getCount()];
-        for(int j=0;j<cursor.getCount();j++){
-            cursor.moveToNext();
-            str1[j]=cursor.getString(0);
-        }
+
 
       /*  for(int i=0;i<cursor.getCount();i++){
             cursor.moveToNext();
@@ -66,12 +60,7 @@ public class ViewRecords extends AppCompatActivity {
             str[i][18]=cursor.getString(18);
         }*/
 
-        lv=findViewById(R.id.lv);
-        adp=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,str1);
-        adp.setNotifyOnChange(true);
-        vadp=new viewlistadapter(this,R.layout.viewlist,str);
-        vadp.setNotifyOnChange(true);
-        lv.setAdapter(adp);
+
 
         etViewSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,7 +70,22 @@ public class ViewRecords extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d("textchanged",""+s);
+//                Log.d("textchanged",""+s);
+                String qq="select name from user where name='"+s+"'";
+                Cursor cursor=dbase.rawQuery(qq,null);
+                Log.d("textchanged","query: "+qq+" cursorcount: "+cursor.getCount());
+                String[][] str=new String[cursor.getCount()][19];
+                String [] str1=new String[cursor.getCount()];
+                for(int j=0;j<cursor.getCount();j++){
+                    cursor.moveToNext();
+                    str1[j]=cursor.getString(0);
+                }
+                lv=findViewById(R.id.lv);
+                adp=new ArrayAdapter<String>(ViewRecords.this,android.R.layout.simple_list_item_1,str1);
+                adp.setNotifyOnChange(true);
+                vadp=new viewlistadapter(ViewRecords.this,R.layout.viewlist,str);
+                vadp.setNotifyOnChange(true);
+                lv.setAdapter(adp);
             }
 
             @Override

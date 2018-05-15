@@ -267,18 +267,22 @@ public class MainActivity extends AppCompatActivity {
 
                 dbhelper db=new dbhelper(MainActivity.this);
                 if(!etName.getText().toString().isEmpty()) {
-                    String result = db.enterdata(etVillageName.getText().toString(), etName.getText().toString(), etAge.getText().toString(),
-                            etDOB.getText().toString(), etHeight.getText().toString(), etWeight.getText().toString(), gender, mstatus,
-                            etFamilyMembers.getText().toString(), etTotalFamilyIncome.getText().toString(), etOccupation.getText().toString(),
-                            actvChiefComplaints.getText().toString(), kco.trim(), actvPastHistory.getText().toString(), habits.trim(),
-                            actvProbableDiagnosis.getText().toString(), actvRx.getText().toString(), actvAdvSuggRef.getText().toString(),
-                            etDoctor.getText().toString());
+                    String result = db.enterdata(etVillageName.getText().toString().trim(), etName.getText().toString().trim(),
+                            etAge.getText().toString().trim(),etDOB.getText().toString().trim(), etHeight.getText().toString().trim(),
+                            etWeight.getText().toString().trim(), gender, mstatus,etFamilyMembers.getText().toString().trim(),
+                            etTotalFamilyIncome.getText().toString().trim(), etOccupation.getText().toString().trim(),
+                            actvChiefComplaints.getText().toString().trim(), kco.trim(), actvPastHistory.getText().toString().trim(),
+                            habits.trim(),actvProbableDiagnosis.getText().toString().trim(), actvRx.getText().toString().trim(),
+                            actvAdvSuggRef.getText().toString().trim(),etDoctor.getText().toString().trim());
 
 
                     if (result.equalsIgnoreCase("SUCCESS"))
                         Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+
+                    finish();
                 }
-                finish();
+                else
+                    etName.setError("Enter Name");
             }
         });
 
